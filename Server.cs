@@ -23,10 +23,14 @@ namespace EasyTCP
         public event EventHandler<DataReceivedArgs> DataReceived;
         private TcpListener Listener;
         public Channels ConnectedChannels;
-        
+
         public Server()
         {
-            Listener = new TcpListener(IPAddress.Parse(Globals.ServerAddress), Globals.ServerPort);
+            Listener = new TcpListener(IPAddress.Any, 2222);
+        }
+        public Server(IPAddress address, int port)
+        {
+            Listener = new TcpListener(address, port);
         }
 
         public async void Start()
